@@ -1,0 +1,31 @@
+magID	sampleID	sex	bmi	age	smoking_state	study_group
+M1746978659	BP01006	female	19.53125	87	non-smoker	periimplantitis
+M1008403048	BP01048	female	22.4913494809689	63	smoker	mucositis
+M1717522652	BP01053	male	22.4913494809689	70	ex-smoker	mucositis
+M1524943176	BP01095	female	19.53125	63	non-smoker	periimplantitis
+M1283945741	BP02019	female	25.7116620752984	77	smoker	mucositis
+M1110726505	BP02051	male	26.5144819575263	58	non-smoker	mucositis
+M1791475261	BP02056	female	15.916955017301	55	non-smoker	mucositis
+M1004846097	BP03027	female	24.9107674003569	75	non-smoker	mucositis
+M1649332925	BP05003	male	18.9919649379109	62	non-smoker	mucositis
+M1875601697	BP05004	male	22.0384011592803	61	non-smoker	periimplantitis
+M1341908534	BP05009	female	24.2214532871972	62	smoker	healthy
+M1622504425	BP07009	female	23.5883292204964	54	non-smoker	healthy
+M1094258468	BP07029	female	19.7776986669831	67	smoker	mucositis
+M1989389750	BP07037	female	23.1246703720232	62	ex-smoker	periimplantitis
+M1543411560	BP07053	male	26.1492768595041	78	non-smoker	periimplantitis
+M1506432639	BP09021	female	22.2136784997223	76	non-smoker	periimplantitis
+M1473762895	BP09025	male	27.2931333537394	46	smoker	mucositis
+M1211523609	BP12052	female	26.2975778546713	64	non-smoker	periimplantitis
+M1509316652	BP13015	female	19.8412698412698	74	non-smoker	periimplantitis
+M1902694554	BP13017	male	20.5714285714286	61	ex-smoker	periimplantitis
+M1406068114	BP13018	male	23.6614386154678	81	ex-smoker	healthy
+M1627315444	BP14005	male		78	non-smoker	periimplantitis
+M1581235167	BP14051	female	26.291723822588	59	non-smoker	mucositis
+M1874058212	BP16033	male	27.5482093663912	71	ex-smoker	periimplantitis
+M1544160211	BP16039	male	27.170631566236	48	ex-smoker	healthy
+M1837430813	BP16050	male	25.3515413737155	79	non-smoker	mucositis
+M1592280509	BP16095	female	19.6051919956733	59	ex-smoker	mucositis
+M1834824406	BP19052	male	21.2962962962963	44	non-smoker	healthy
+M1285881131	BP21024	female		55	smoker	periimplantitis
+M1690656827	BP24002	male	25.7370814149675	62	non-smoker	mucositis
