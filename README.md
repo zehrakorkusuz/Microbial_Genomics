@@ -193,6 +193,60 @@ To count proteins and merge them into the compiled data, use the following scrip
    
    echo "Protein counts have been merged into \$output_file."
    ```
+#### Compiled Prokka Output to a tsv file
+
+   ```bash
+#!/bin/bash
+
+# Temporary file to hold all parsed data
+temp_data="temp_data.txt"
+
+# Final output TSV file
+output_file="compiled_data.tsv"
+
+# Check if the temp file exists, if so, remove it
+[ -e "$temp_data" ] && rm "$temp_data"
+
+# Extract and compile information from each file
+for dir in Prokka_*_short; do
+    ID=$(echo "$dir" | sed 's/Prokka_\(.*\)_short/\1/')
+    file="${dir}/${ID}_short.txt"
+    
+    # Read each line in the file and format it
+    while IFS=": " read -r key value; do
+        echo -e "${ID}\t${key}\t${value}" >> "$temp_data"
+    done < "$file"
+done
+
+# Create the header for the output file
+echo -e "ID\t$(awk -F'\t' '!seen[$2]++ {keys=keys"\t"$2} END {print substr(keys,2)}' "$temp_data")" > "$output_file"
+
+# Fill the output file
+awk -F'\t' '{
+    id_key=$1 OFS $2
+    data[id_key]=$3
+    if (!key_seen[$2]++) {
+        keys[key_order++]=$2
+    }
+    if (!id_seen[$1]++) {
+        ids[id_order++]=$1
+    }
+}
+END {
+    for (i=0; i<id_order; i++) {
+        printf ids[i]
+        for (j=0; j<key_order; j++) {
+            printf "\t%s", data[ids[i] OFS keys[j]]
+        }
+        printf "\n"
+    }
+}' OFS='\t' "$temp_data" >> "$output_file"
+
+# Remove temporary file
+rm "$temp_data"
+```
+
+
 ```console
 foo@bar:~$ chmod +x run_prokka.sh
 foo@bar:~$ ./run_prokka
