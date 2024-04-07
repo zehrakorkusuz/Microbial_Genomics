@@ -3,7 +3,10 @@ Oral Microbiome &amp; Metagenomic analysis for the Characterization of a uSGB
 
 Zehra Korkusuz, Eevi Sipponen
 
+
+
 # Steps we followed 
+The text is generated with ChatGPT4 when the code chunks are provided as input
 
 ## 1. CheckM Quality Analysis & Taxonomic Assignment
 
@@ -29,12 +32,12 @@ This document provides a step-by-step guide for downloading, decompressing, and 
 
 ## 2. Gene Annotation with Prokka
 
-## Prerequisites
+#### Prerequisites
 
 - Ensure Prokka is installed and available in your environment.
 - Assume MAGs are in `shortened_fasta/*.fna`.
 
-## Prokka Annotation
+#### Prokka Annotation
 
 To annotate the MAGs, use the following script. It iterates over each `.fna` file, runs Prokka, and skips already processed files.
 
@@ -58,7 +61,7 @@ for i in shortened_fasta/*.fna; do
 done
 ```
 
-# Compiling Annotation Data
+#### Compiling Annotation Data
    
 Use the following shell script to compile annotation data into a `.tsv` file:
    
@@ -85,6 +88,41 @@ Use the following shell script to compile annotation data into a `.tsv` file:
    rm "$temp_data"
    ```
 
+#### Counting Proteins
+
+To count proteins and merge them into the compiled data, use the following script:
+
+   ```bash
+   #!/bin/bash
+   
+   output_file="compiled_data.tsv"
+   protein_counts_file="protein_counts.tsv"
+   
+   echo -e "ID\tknown_proteins\thypothetical_proteins" > "\$protein_counts_file"
+   
+   for dir in Prokka_*_short; do
+       ID=\$(echo "\$dir" | sed 's/Prokka_\(.*\)_short/\1/')
+       prokka_tsv="\${dir}/\${ID}_short.tsv"
+       
+       known=\$(grep -v "hypothetical protein" "\$prokka_tsv" | wc -l)
+       hypothetical=\$(grep "hypothetical protein" "\$prokka_tsv" | wc -l)
+       
+       echo -e "\${ID}\t\${known}\t\${hypothetical}" >> "\$protein_counts_file"
+   done
+   
+   sort -o "\$protein_counts_file" "\$protein_counts_file"
+   
+   join -1 1 -2 1 -t \$'\t' -o '1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 1.10 1.11 1.12 2.2 2.3' <(sort -k1,1 "\$output_file") <(sort -k1,1 "\$protein_counts_file") > "temp_\$output_file"
+   
+   mv "temp_\$output_file" "\$output_file"
+   rm "\$protein_counts_file"
+   
+   echo "Protein counts have been merged into \$output_file."
+   ```
+```console
+foo@bar:~$ chmod +x run_prokka.sh
+foo@bar:~$ ./run_prokka
+```
 
 
-P.S. The text is generated with ChatGPT4 when the code chunks are provided as input
+
