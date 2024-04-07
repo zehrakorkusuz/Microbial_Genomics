@@ -29,8 +29,82 @@ This document provides a step-by-step guide for downloading, decompressing, and 
 
    ```bash
    mkdir checkm_output
+   ```
 
-## 2. Gene Annotation with Prokka
+3. Run CheckM
+   ```bash
+   bunzip2 mags/* && checkm taxonomy_wf domain Bacteria mags checkm_output -t 4
+   ```
+
+## 2. Taxonomic Assignment using PhyloPhlAn
+
+The following steps outline how to assign taxonomy to metagenome-assembled genomes (MAGs) using PhyloPhlAn 3.0.
+
+#### Prerequisites
+
+- Ensure you have `conda` installed on your system.
+
+1. **Set Conda Channel Priority**
+
+   Adjust the conda channel priority to flexible for compatibility:
+
+   ```bash
+   conda config --set channel_priority flexible
+   ```
+2. **Create a New Conda Environment**
+
+   Create a new conda environment with the necessary packages:
+
+   ```bash
+   conda create -n ppa phylophlan=3.0 biopython=1.83 -c bioconda -c conda-forge
+   ```
+
+3. **Activate the New Environment**
+
+   Activate the conda environment named `ppa`:
+   ```bash
+   conda activate ppa
+   ```
+
+4. **List Available Databases**
+
+   Check the available databases in PhyloPhlAn:
+
+   ```bash
+   (ppa) phylophlan_metagenomic --database_list
+   ```
+
+5. **Create Output Directory**
+
+   Create a directory to store the output from PhyloPhlAn:
+
+   ```bash
+   (ppa) mkdir phylophlan_output
+   ```
+
+6. **Run PhyloPhlAn Metagenomic Analysis**
+
+   Execute the PhyloPhlAn metagenomic analysis with the specified parameters:
+
+   ```bash
+   (ppa) phylophlan_metagenomic -i mags -d CMG2324 --verbose --nproc 4 -n 1 -o phylophlan_output/ppa_ms
+   ```
+
+   - `-i mags`: Input folder where the MAGs are located.
+   - `-d CMG2324`: Specifies the database to be used for the analysis.
+   - `--verbose`: Enables verbose mode, providing detailed log messages.
+   - `--nproc 4`: Number of processors to use.
+   - `-n 1`: Names the run, useful for running multiple analyses.
+   - `-o phylophlan_output/ppa_ms`: Specifies the output directory and prefix for the output files.
+
+After running these commands, your MAGs will be processed and the taxonomic assignment will be saved in the specified output directory.
+
+
+
+
+
+
+## 3. Gene Annotation with Prokka
 
 #### Prerequisites
 
