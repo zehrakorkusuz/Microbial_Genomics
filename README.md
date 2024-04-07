@@ -29,5 +29,62 @@ This document provides a step-by-step guide for downloading, decompressing, and 
 
 ## 2. Gene Annotation with Prokka
 
+## Prerequisites
+
+- Ensure Prokka is installed and available in your environment.
+- Assume MAGs are in `shortened_fasta/*.fna`.
+
+## Prokka Annotation
+
+To annotate the MAGs, use the following script. It iterates over each `.fna` file, runs Prokka, and skips already processed files.
+
+```bash
+for i in shortened_fasta/*.fna; do
+    base=\$(basename "\$i" .fna)
+    output_dir="Prokka_\${base}"
+
+    if [ ! -d "\$output_dir" ]; then
+        echo "Processing: \$i..."
+        prokka --outdir "\$output_dir" \
+               --prefix "\${base}" \
+               --force \
+               --centre "Project_" \
+               --compliant \
+               --kingdom Bacteria "\$i"
+        echo "Completed: \$i"
+    else
+        echo "Output directory \$output_dir already exists, skipping..."
+    fi
+done
+```
+
+# Compiling Annotation Data
+   
+Use the following shell script to compile annotation data into a `.tsv` file:
+   
+   ```bash
+   #!/bin/bash
+   
+   temp_data="temp_data.txt"
+   output_file="compiled_data.tsv"
+   
+   [ -e "$temp_data" \] && rm "$temp_data"
+   
+   for dir in Prokka_short/*; do ID=$(echo "$dir" | sed 's/Prokka_(.)_short/\1/') file="$dir/${ID}_short.txt"
+   
+       while IFS="-: " read -r key value; do
+           echo -e "${ID}\t${key}\t${value}" >> "$temp_data"
+       done < "$file"
+   done
+   
+   echo -e "ID\t$(awk -F'\t' '!seen[$2]++ {keys=keys"\t"$2} END {print substr(keys,2)}' "$temp_data")" > "$output_file"
+   
+   awk -F'\t' '{ id_key=$1 OFS $2 data[id_key]=$3 if (!key_seen[$2]++) { keys[key_order++]=$2 } if (!id_seen[$1]++) { ids[id_order++]=$1 } }
+   END { for (i=0; i<id_order; i++) { printf ids[i] for (j=0; j<key_order; j++) { printf "\t%s", data[ids[i] OFS keys[j]] } printf "\n" } }' OFS='\t' "$temp_data" >> "$output_file"
+   
+   rm "$temp_data"
+   ```
+
+
 
 P.S. The text is generated with ChatGPT4 when the code chunks are provided as input
