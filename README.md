@@ -1,4 +1,4 @@
-# Microbial_Genomics
+# Computational Microbial Genomic, Trento University 2023 - 2024
 Oral Microbiome &amp; Metagenomic analysis for the Characterization of a uSGB
 
 Zehra Korkusuz, Eevi Sipponen
@@ -8,7 +8,7 @@ Zehra Korkusuz, Eevi Sipponen
 # Steps we followed 
 The text is generated with ChatGPT4 when the code chunks are provided as input
 
-## 1. CheckM Quality Analysis & Taxonomic Assignment
+## 1. CheckM Quality Analysis
 
 This document provides a step-by-step guide for downloading, decompressing, and analyzing metagenome-assembled genomes (MAGs) belonging to a specific gene bank (SGB).
 
