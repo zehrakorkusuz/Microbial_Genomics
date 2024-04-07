@@ -1,12 +1,28 @@
 # Computational Microbial Genomic, Trento University 2023 - 2024
 Oral Microbiome &amp; Metagenomic analysis for the Characterization of a uSGB
 
-Zehra Korkusuz, Eevi Sipponen
+*The text is generated with ChatGPT4 when the code chunks are provided as input*
+
+Authors: Zehra Korkusuz, Eevi Sipponen
 
 
+This project is centered on the computational exploration of metagenome-assembled genomes (MAGs) derived from a dental plaque Species-Level Genome Bin (SGB), specifically SGB 985. 
 
-# Steps we followed 
-The text is generated with ChatGPT4 when the code chunks are provided as input
+### Objectives
+
+The primary objective is to extract valuable insights from the MAGs of SGB 985. To achieve this, we will execute a series of computational genomic analyses, which include:
+
+- **Quality-Checking**: Using CheckM to assess the quality of the assembled genomes, ensuring their suitability for further analysis.
+- **Taxonomic Assignment**: Employing PhyloPhlAn to categorize the MAGs into taxonomic ranks, providing a clearer understanding of their biological context.
+- **Genome Annotation**: Annotating the genomes with Prokka to identify genes and infer their function.
+- **Pangenome Analysis**: Applying Roary to compare gene content across different genomes, generating plots to visualize the pan-genome landscape.
+- **Phylogenetic Analysis**: Constructing phylogenetic trees with Roary and FastTree to elucidate evolutionary relationships, accompanied by plots for clarity.
+- **Association with Host Metadata**: Correlating genomic data with host metadata to explore potential associations.
+
+
+# ANALYSIS 
+
+
 
 ## 1. CheckM Quality Analysis
 
