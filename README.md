@@ -28,3 +28,6 @@ This document provides a step-by-step guide for downloading, decompressing, and 
    mkdir checkm_output
 
 ## 2. Gene Annotation with Prokka
+
+
+P.S. The text is generated with ChatGPT4 when the code chunks are provided as input
