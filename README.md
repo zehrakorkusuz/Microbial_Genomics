@@ -1,7 +1,7 @@
 # Computational Microbial Genomic, Trento University 2023 - 2024
 Oral Microbiome &amp; Metagenomic analysis for the Characterization of a uSGB
 
-*The text is generated with ChatGPT4 when the code chunks are provided as input*
+*The text is generated with ChatGPT4 using code chunks used in the projects as input*
 
 Authors: Zehra Korkusuz, Eevi Sipponen
 
